@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="myBackMonitor" namespace="/pages_BackMonitor" extends="publicapp">
+		<action name="backMonitor" class="com.crm.action.BackMonitorAction">
+			<result >BackMonitor.jsp</result>
+			<result name="list">BackMonitor_Edit.jsp</result>
+			<result name="add">BackMonitor_Add.jsp</result>
+		</action>
+	</package>
+</struts>

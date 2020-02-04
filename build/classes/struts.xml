@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- BEGIN 拦截器（全局拦截） -->
+	<package name="publicapp" abstract="true" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="Appoint" class="com.crm.tools.MyInterceptor"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="Appoint">
+				 <!-- 指定哪些方法不拦截 -->
+					<param name="excludeMethods">Time,findAllAdvert2,addMonitor,checking,Mixture,add,addlogon,addCheckWork,updateAdvertPicState2,backList,sssss</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 这句是设置所有Action自动调用的拦截器堆栈 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref> 
+		
+		<global-results>
+			<result name="error" type="redirect">/login.jsp</result>
+			<result name="ajax">/ajax.jsp</result>
+		</global-results> 
+	</package>
+	
+	
+	<!-- END 拦截器 -->
+	
+	
+	<package name="myapp" namespace="/" extends="struts-default">
+	
+		<global-results>
+			<result name="error" type="redirect">/login.jsp</result>
+			<result name="ajax">/ajax.jsp</result>
+		</global-results>
+		
+		<action name="hr_emp" class="hrEmployeeAction">
+			<result name="login" type="redirect">/index.jsp</result>
+			<result name="loginerr">/login.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- 配置XML文件 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.multipart.maxSize" value="629145600"></constant>  <!-- 文件上传最大值为600M（1024*1024*600） -->
+	<include file="com/crm/struts/crm-struts.xml"></include>
+	<include file="com/crm/struts/hr-struts.xml"></include>
+	<include file="com/crm/struts/mail-struts.xml"></include>
+	<include file="com/crm/struts/param-struts.xml"></include>
+	<include file="com/crm/struts/personal-struts.xml"></include>
+	<include file="com/crm/struts/public-struts.xml"></include>
+	<include file="com/crm/struts/sys-struts.xml"></include>
+	<include file="com/crm/struts/BackMonitor-struts.xml"></include>
+	<include file="com/crm/struts/Shop-struts.xml"></include>  <!-- 店铺 -->
+</struts>
